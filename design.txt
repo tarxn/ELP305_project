@@ -1,0 +1,12 @@
+charger dim. = 6cm*5cm*3.5cm
+gap=19mm & plug-diameter=5.105mm
+interior=(later)
+
+
+type c size=??
+rounded edge=0.7cm
+clipping system=??
+grove dim.=??
+
+
+FINAL PAPER DESIGN
