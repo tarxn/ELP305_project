@@ -1,0 +1,16 @@
+For pushing to test branch:
+
+git init
+git add .
+git commit -m 'Added my project'
+git push -u origin test
+
+
+
+For pulling from test branch
+
+git init
+git pull origin test
+
+
+
