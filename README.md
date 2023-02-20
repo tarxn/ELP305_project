@@ -1,2 +1,2 @@
 # BIG BLACK co.
-Chargers and cables
+BIG Black Chargers & BIG Black Cables
