@@ -1,0 +1,26 @@
+[[_design]]
+== Design
+
+.Isometric view of mobile charger
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/view1.png[]
+
+.Isometric view of mobile charger
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/veiw2.png[]
+
+Dimensions of charger:
+
+.Isometric view of mobile charger
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/measure1.png[]
+
+.Isometric view of mobile charger
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/measure2.png[]
+
+.Isometric view of mobile charger
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/measure3.png[]
+
+Min-length: 2.23” or 5.6642 cm +
+Max-length: 2.82” or 7.1628 cm +
+Min-Breadth: 1.46” or 3.7084 cm +
+Max-Breadth: 2.12” or 5.3848 cm +
+Height: 2.7599” or 7 cm +
+Color: BLACK #000000, 
