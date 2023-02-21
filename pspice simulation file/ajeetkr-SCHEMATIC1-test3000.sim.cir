@@ -1,0 +1,25 @@
+** Profile: "SCHEMATIC1-test3000"  [ C:\Users\ajeet\Desktop\ELP305\orcad\ajeetkr-SCHEMATIC1-test3000.sim ] 
+
+** Creating circuit file "ajeetkr-SCHEMATIC1-test3000.sim.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Local Libraries :
+.LIB "C:\Users\ajeet\Downloads\slum5271\UCC28730_PSPICE_TRANS\UCC28730_netlist.lib" 
+.LIB ".\models\diodes-spice-models.lib" 
+.LIB ".\models\spice_smbjxxxa.lib" 
+.LIB ".\models\ifx_simulationmodel_coolmos_c3_mosfet_800v.lib" 
+.LIB ".\models\df10sa.lib" 
+.LIB ".\models\cd214c.txt.lib" 
+.INC ".\models\cd214c.txt.lib" 
+.INC "C:\Users\ajeet\Downloads\slum527\UCC28730_PSPICE_TRANS\UCC28730_netlist.lib" 
+* From [PSPICE NETLIST] section of C:\Program Files\Orcad\PSpice\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 100ms  0 0.01s 
+.PROBE V(*) I(*) W(*) D(*) NOISE(*) 
+.INC ".\ajeetkr-SCHEMATIC1.net" 
+
+
+.END

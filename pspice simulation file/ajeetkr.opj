@@ -1,0 +1,113 @@
+(ExpressProject "ajeetkr"
+  (ProjectVersion "19981106")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library")
+    (NoModify)
+    (File ".\ajeetkr.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE"))
+  (Folder "Outputs"
+    (File ".\ajeetkr-schematic1.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (ActiveProfile ".\ajeetkr-schematic1-test3000.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\ajeetkr-schematic1-test3000.sim"
+        (DisplayName "SCHEMATIC1-test3000")
+        (Type "PSpice Profile")))
+    (Folder "Model Libraries"
+      (Sort User))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (PartMRUSelector
+    (UCC28730_NETLIST
+      (FullPartName "UCC28730_NETLIST.Normal")
+      (LibraryName
+         "C:\USERS\AJEET\DOWNLOADS\SLUM5271\UCC28730_PSPICE_TRANS\UCC28730_NETLIST.OLB")
+      (DeviceIndex "0"))
+    (SMBJ11A
+      (FullPartName "SMBJ11A.Normal")
+      (LibraryName
+         "C:\USERS\AJEET\DESKTOP\ELP305\ORCAD\MODELS\SPICE_SMBJXXXA.OLB")
+      (DeviceIndex "0"))
+    (SPB17N80C3_L1
+      (FullPartName "SPB17N80C3_L1.Normal")
+      (LibraryName
+         "C:\USERS\AJEET\DESKTOP\ELP305\ORCAD\MODELS\IFX_SIMULATIONMODEL_COOLMOS_C3_MOSFET_800V.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (0
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (c
+      (FullPartName "c.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (CD214C-F3600
+      (FullPartName "CD214C-F3600.Normal")
+      (LibraryName "C:\USERS\AJEET\DESKTOP\ELP305\ORCAD\MODELS\CD214C.TXT.OLB")
+      (DeviceIndex "0"))
+    (GND_SIGNAL
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (B540C
+      (FullPartName "B540C.Normal")
+      (LibraryName "C:\USERS\AJEET\DESKTOP\ELP305\ORCAD\MODELS\B540C.SPICE.OLB")
+      (DeviceIndex "0"))
+    (l
+      (FullPartName "l.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\ANALOG_P.OLB")
+      (DeviceIndex "0"))
+    (SMBJ14AQ
+      (FullPartName "SMBJ14AQ.Normal")
+      (LibraryName
+         "C:\USERS\AJEET\DESKTOP\ELP305\ORCAD\MODELS\DIODES-SPICE-MODELS.OLB")
+      (DeviceIndex "0"))
+    (L
+      (FullPartName "L.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (DF10SA
+      (FullPartName "DF10SA.Normal")
+      (LibraryName "C:\USERS\AJEET\DESKTOP\ELP305\ORCAD\MODELS\DF10SA.OLB")
+      (DeviceIndex "0"))
+    (VSIN
+      (FullPartName "VSIN.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (VAC
+      (FullPartName "VAC.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0")))
+  (LastUsedLibraryBrowseDirectory
+     "C:\Users\ajeet\Downloads\slum5271\UCC28730_PSPICE_TRANS")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Outputs"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 199 700 -1 -1 0 301 0 734"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 2 3 398 700 -8 -31 200 1498 -6 734")
+        (Scroll "0 200")
+        (Zoom "100")
+        (Occurrence "/"))
+      (Path "C:\USERS\AJEET\DESKTOP\ELP305\ORCAD\AJEETKR.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1"))))

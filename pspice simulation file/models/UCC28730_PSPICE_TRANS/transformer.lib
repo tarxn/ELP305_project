@@ -1,0 +1,16 @@
+* PSpice Model Editor - Version 16.2.0
+*$
+.SUBCKT FWDR P1 P2 S1 S2 RS1 RS2 
+*.SUBCKT FWDR P1 P2 RS1 RS2 S1 S2
+* MODEL Type: Forward with reset winding Transformer
+RP1 P1 PI 1.43
+LP1 PI P2 415u
+LS1 S1 SI1 2.752u
+RS1 SI1 S2 0.015
+LRS1 RS2 RSI 29.51u
+RRSI RS1 RSI 0.632 
+K1 LP1 LS1 LRS1 1
+RG1 S2 0 1G
+RG2 RS2 0 1G
+.ends FWDR
+*$
