@@ -1,0 +1,1342 @@
+= ELP305 Design and System Laboratory
+II Semester 2022-23
+:lang: en
+
+[[header]]
+=== Report on Problem Statement 1 : Requirements + Specifications + Design + Closure
+
+---
+
+Version:  4.2 +
+Week: 4 +
+Tribe : BNavi + 
+Date of Submission : 3 March, 2023
+
+---
+
+Github link : https://github.com/tarxn/ELP305_project
+[[toc]]
+[[toctitle]]
+Table of Contents
+
+* link:#_tribe_member_information[1. Tribe Member Information]
+* link:#_documentation_statistics[2. Documentation Statistics]
+** link:#_text_statistics[2.1. Text Statistics]
+** link:#_readability_statistics[2.2. Readability Statistics]
+** link:#_list_of_abbreviations[2.3. List of Abbreviations]
+** link:#_list_f[2.4. List of figures]
+** link:#_list_t[2.5. List of tables]
+** link:#_gant[2.6. Gantt Chart]
+* link:#_abstract[3. Abstract]
+* link:#_motivation[4. Motivation]
+* link:#_requirements[5. Requirements]
+** link:#_input_output_requirements[5.1. Input Output Requirements]
+** link:#_logistical_requirements[5.2. Logistical Requirements]
+** link:#_environmental_requirements[5.3. Environmental Requirements]
+** link:#_structural_requirements[5.4. Structural Requirements]
+** link:#_features[5.5. Features]
+* link:#_specifications[6. Specifications ]
+** link:#_adaptor_specifications[6.1 Adaptor Specifications]
+** link:#_Feedback_Controller_chip[6.2 Feedback Controller Chip]
+*** link:#_description[6.2.1 Description]
+*** link:#_chip_features[6.2.2 Features]
+**  link:#_cable[6.3 Cable]
+***  link:#_cable_specifications[6.3.1 Cable Specifications]
+***  link:#_standards[6.3.2 Standards/Certifications]
+** link:#_charger_pins[6.4 Charger Pins]
+***  link:#_pins_specifications[6.4.1 Charger Pins Specifications]
+** link:#_circuit_specifications[6.5. Circuit Specifications]
+* link:#_power_and_safety[7. Power and Safety]
+** link:#_power_specifications[7.1 Power Specifications]
+** link:#_safety_specifications[7.2 Safety Specifications ]
+* link:#_working[8. System Design]
+** link:#_circuit_design[8.1. Circuit Design]
+*** link:#_discarded_designs[8.1.1. Discarded Designs]
+*** link:#_design1[8.1.1.1. Design 1]
+*** link:#_design2[8.1.1.2. Design 2]
+*** link:#_design3[8.1.1.3. Design 3]
+*** link:#_design4[8.1.1.4. Design 4]
+*** link:#_final_design[8.1.2. Final Design]
+** link:#_pcb_design[8.2. PCB Design]
+** link:#_cad_design[8.3. CAD Design]
+*** link:#_charger[8.3.1. Charger]
+*** link:#_packaging[8.3.2. Packaging]
+* link:#_maintenance[9. Maintenance]
+** link:#_maintenance_before_after[9.1. Maintenance of chargers after production and before reaching consumers]
+** link:#_services[9.2. Services]
+** link:#_repair_system[9.3. How can an efficient repair service be provided for the chargers we sell]
+** link:#_plan_for_repairs[9.4. How should we plan for repairs]
+** link:#_plan_for_spares[9.5. How to plan for spares]
+* link:#_market[10. Marketing Strategy]
+* link:#_vendors[11. Vendors]
+* link:#_scope[12. Scope]
+** link:#_magnetic_scope[12.1 Scope for magnetic cable]
+** link:#_var_out[12.2. Scope for Variable Output]
+* link:#_cost[13. Cost Estimation]
+* link:#_Attributions[13. Attributions]
+* link:#_references[14. References ]
+
+
+
+
+ 
+[[content]]
+
+[[_tribe_member_information]]
+== 1. Tribe Member Information
+
+[options="header"]
+|=====================================================================================================================================================
+| 1  | Entry No     | Name                        | Vertical                                   | Email address                    | Involvement Factor
+| 2  | 2020EE30617  | Priyanshu Jain              | Coordinator                                | jain.priyanshu1110@gmail.com     | 1                 
+| 3  | 2020EE10478  | Ashwendh Chowdhary          | Coordinator                                | chowdharyashwendh@gmail.com      | 1                 
+| 4  | 2020EE10498  | Ishan                       | Technical Head                             | ee1200498@iitd.ac.in             | 1                 
+| 5  | 2020EE30598  | Jain Ansh                   | Manager                                    | anshjain7823@gmail.com           | 1                 
+| 6  | 2020EE30575  | Aditya mathur               | Sub Co-ordinator(Circuit Design)           | adityamathur675@gmail.com        | 1                 
+| 7  | 2020EE30631  | Vineet Kumar Pathak         | Sub Co-ordinator(Circuit Design)           | pathakv718@gmail.com             | 1                 
+| 8  | 2020EE10457  | ADARSH SONI                 | Circuit Design                             | ee1200457@iitd.ac.in             | 1                 
+| 9  | 2020EE10459  | Aditya Dhukia               | Circuit Design                             | adityadhukia2000@gmail.com       | 0                 
+| 10 | 2020EE30577  | Ajeet Kumar                 | Circuit Design                             | ee3200577@iitd.ac.in             | 1                 
+| 11 | 2020EE30580  | Anish Majumder              | Circuit Design                             | ee3200580@iitd.ac.in             | 1                 
+| 12 | 2020MT10788  | Ankit Kumar                 | Circuit Design                             | akmeena26012003@gmail.com        | 0                 
+| 13 | 2020EE30744  | Arjun Aggarwal              | Circuit Design                             | arjunaggarwal1909@gmail.com      | 0                 
+| 14 | 2020EE11013  | Dhruv Nagpal                | Circuit Design                             | dhruvnagpal12@gmail.com          | 0.25              
+| 15 | 2020EE10499  | Ishi Gupta                  | Circuit Design                             | ishiguptadeepika@gmail.com       | 1                 
+| 16 | 2020MT10656  | Mohammad Areeb              | Circuit Design                             | mt1200656@maths.iitd.ac.in       | 0.8               
+| 17 | 2020EE30606  | Neeraj Kumar Meena          | Circuit Design                             | ee3200606@ee.iitd.ac.in          | 1                 
+| 18 | 2020EE30588  | Bijanapally Tarun           | Sub Co-ordinator(Design)                   | btarun1051@gmail.com             | 1                 
+| 19 | 2020EE30586  | Ayush Kumar                 | Sub Co-ordinator(Design)                   | kumar.ayush1570@gmail.com        | 1                 
+| 20 | 2020MT10778  | Aashish Kumar               | Design                                     | aksofpm001@gmail.com             | 1                 
+| 21 | 2020EE30591  | Dev Chandna                 | Design                                     | devchandana055@gmail.com         | 1                 
+| 22 | 2020MT10800  | Divyansh Mohan Bansal       | Design                                     | bansal.divyansh14@gmail.com      | 1                 
+| 23 | 2020MT10805  | Hanish Goyal                | Design                                     | mt1200805@iitd.ac.in             | 1                 
+| 24 | 2020EE10519  | Parth Kamra                 | Design                                     | parth.kamra34@gmail.com          | 1                 
+| 25 | 2020EE30616  | Praveen Singh               | Design                                     | praveen22711222@gmail.com        | 1                 
+| 26 | 2020EE10568  | Yash Jayswal                | Design                                     | yashmjayswal@gmail.com           | 1                 
+| 27 | 2020MT10835  | Ravi Raj Kumawat            | Sub coordinator(Documentation)             | mt1200835@iitd.ac.in             | 0.8               
+| 28 | 2020EE30214  | Abhyuday Bhargava           | Documentation                              | abhyu235@gmail.com               | 1                 
+| 29 | 2020EE30578  | Akshat Chauhan              | Documentation                              | ee3200578@iitd.ac.in             | 1                 
+| 30 | 2020EE10226  | Ansh Goel                   | Documentation                              | ee1200206@iitd.ac.in             | 1                 
+| 31 | 2020MT10791  | Atharva Pratap Suryawanshi  | Documentation                              | suryawanshiatharva2029@gmail.com | 1                 
+| 32 | 2020EE10485  | Chandrakant Rajput          | Documentation                              | ck9112002@gmail.com              | 0.25              
+| 33 | 2020EE30592  | Dhruv Aggarwal              | Documentation                              | ee320592@iitd.ac.in              | 1                 
+| 34 | 2020EE10507  | Kunal Shahi                 | Documentation                              | shahikunal436@gmail.com          | 0.5               
+| 35 | 2020EE10603  | Kushagra Mittal             | Documentation                              | kushagraiitdelhi2022@gmail.com   | 1                 
+| 36 | 2020EE10510  | Maitree Shandilya           | Documentation                              | ee1200510@iitd.ac.in             | 0.5               
+| 37 | 2020MT10831  | Pratik Behera               | Documentation                              | mt1200831@iitd.ac.in             | 1                 
+| 38 | 2020EE30615  | Pranjal Sachan              | Sub coordinator(Product Management )       | pranjalsachan22@gmail.com        | 1                 
+| 39 | 2020EE10467  | Amogh Vikram Agrawal        | Product Management                         | amoghagrawal1@gmail.com          | 1                 
+| 40 | 2020EE30582  | Anukriti                    | Product Management                         | anukriti.ak21@gmail.com          | 1                 
+| 41 | 2020EE10483  | Bolledhu Sree Divya         | Product Management                         | sreedivyab03@gmail.com           | 1                 
+| 42 | 2020EE10492  | Gaurav Sewda                | Product Management                         | ee1200492@iitd.ac.in             | 0.5               
+| 43 | 2020EE10500  | Jaideep                     | Product Management                         | jaideepverma001@gmail.com        | 1                 
+| 44 | 2020EE30611  | Parul Meel                  | Product Management                         | parulmeeliitd@gmail.com          | 1                 
+| 45 | 2020EE10524  | Prakash Tiwari              | Product Management                         | prakashtiwari928@gmail.com       | 1                 
+| 46 | 2020EE10541  | Rishu Raj                   | Product Management                         | ee1200541@ee.iitd.ac.in          | 0                 
+| 47 | 2020EE10551  | Satyam Sagar                | Product Management                         | satyamsagar03@gmail.com          | 1                 
+| 48 | 2020EE30625  | Satyam Singh Gour           | Product Management                         | satyamsinghgour2002@gmail.com    | 1                 
+| 49 | 2020EE30127  | Shashwat Gokhe              | Product Management                         | shashwatgokhe2@gmail.com         | 1                 
+| 50 | 2020EE10556  | Sourabh Agrawal             | Product Management                         | sourabhagrwal38@gmail.com        | 1                 
+| 51 | 2020EE10561  | Tripti Jain                 | Product Management                         | ee1200561@iitd.ac.in             | 1                 
+| 52 | 2020EE10515  | Nikita Khedar               | Sub Co-ordinator(Research And Development) | nikitakhedar87@gmail.com         | 1                 
+| 53 | 2020MT10783  | Aditya Agrawal              | Research And Development                   | agrawaladitya270@gmail.com       | 1                 
+| 54 | 2020EE10464  | Agnivesh Singh              | Research And Development                   | agnivesh2705@gmail.com           | 1                 
+| 55 | 2020MT60870  | Arpit Goyal                 | Research And Development                   | goyalarpit015@gmail.com          | 1                 
+| 56 | 2020MT10808  | Harshvardhan Patel          | Research And Development                   | harshvardhanpatel2212@gmail.com  | 1                 
+| 57 | 2020EE30600  | Jaypal                      | Research And Development                   | jaypal182001@gmail.com           | 0.9               
+| 58 | 2020EE10504  | Kanishka Singh              | Research And Development                   | kanishkasingh779@gmail.com       | 1                 
+| 59 | 2020EE30601  | Kanta Meena                 | Research And Development                   | kantameenaiitd2000@gmail.com     | 1                 
+| 60 | 2020EE10512  | Monika Meghwal              | Research And Development                   | monikameghwal05@gmail.com        | 1                 
+| 61 | 2020EE10537  | Rani Meena                  | Research And Development                   | konghyun.jae1997@gmail.com       | 1                 
+| 62 | 2020EE30621  | Ritanshu Dhiman             | Research And Development                   | dhimanritanshu12@gmail.com       | 1                 
+| 63 | 2020EE10542  | Rohit verma                 | Research And Development                   | vermarohit1225@gmail.com         | 1                 
+| 64 | 2020EE10972  | Shashank Narain             | Research And Development                   | snarain2003@gmail.com            | 1                 
+| 65 | 2020MT10852  | Shreyansh Jain              | Research And Development                   | shreyanshj292@gmail.com          | 1                 
+| 66 | 2020EE10557  | Srikanth R                  | Research And Development                   | ee1200557@iitd.ac.in             | 0.25              
+| 67 | 2020EE30634  | Vivek Kumar                 | Research And Development                   | gomivivek2001@gmail.com          | 1                 
+| 68 | 2020EE10569  | Yashi Poddar                | Research And Development                   | yashipoddar399@gmail.com         | 1                 
+|=====================================================================================================================================================
+Total number of members = 68
+
+[[_documentation_statistics]]
+== 2. Documentation Statistics
+
+
+[[_text_statistics]]
+=== 2.1. Text Statistics
+[cols="<,<,<,<,<", options="header",]
+|=====
+|*Word Count*|*# Unique Words*|*# Repeated Words*|*# Sentences*|*# Characters*
+|2759|1136|1623|339|13833
+|*# Syllables*|*Avg # of words per sentence*|*Avg # of characters per sentence*|*Avg # of characters per word*|*Avg # of syllables per word*
+|4609|8|40|5|2
+|=====
+
+[[_readability_statistics]]
+=== 2.2. Readability Statistics
+[cols="2,2,2",options="header",]
+|===
+|Readability Index |Score |Can be easily understood by
+|Flesch Reading Ease score |47.9 |difficult to read
+|Gunning Fog Score |8.4 |fairly easy to read
+|Flesch-Kincaid Grade level |8.6 |Ninth Grade students
+|The Coleman-Liau Index |12 |Twelfth Grade students
+|Automated Readability Index |6.3|Seventh Grade students
+|SMOG Formula score |7.5 |Eight grade students
+|Linear Write Formula Score |4.7 |Fifth grade
+|===
+The above results were obtained using
+https://readabilityformulas.com/freetests/six-readability-formulas.php.
+
+[[_list_of_abbreviations]]
+=== 2.3. List of Abbreviations
+[cols="^,^,^",options="header"]
+|===
+|S. No. |Abbreviation |Stands For
+|1 |USB |Universal Serial Bus
+|2 |PIC |Peripheral Interface Controller
+|3 |LED |Light Emitting Diode
+|4 |DSO |Digital Storage Oscilloscope
+|5 |AC |Alternating Current
+|6 |DC |Direct Current
+|7 |IC |Integrated Circuit
+|===
+
+[[_list_f]]
+=== 2.4. List of Figures
+
+|=======================================================
+| 1  | Requirements mindmap                             
+| 2  | Specifications mindmap                           
+| 3  | Design mindmap!                                  
+| 4  | Schematic of design 1                            
+| 5  | Schematic of design 2                            
+| 6  | Schematic of design 3                            
+| 7  | Schematic of design 4                            
+| 8  | Schematic of final design in Altium              
+| 9  | Flowchart of working of the final circuit design!
+| 10 | Partwise working of the circuit                  
+| 11 | Double bridge rectifier output                   
+| 12 | peak output voltage vs output current            
+| 13 | Power dissipation in bridge rectifier            
+| 14 | Duty Cycle vs Output Current                     
+| 15 | IC temp vs I out                                 
+| 16 | M1 Power Dissipation vs Output Current           
+| 17 | M1 temp vs I out                                 
+| 18 | T1 core loss vs Output Current                   
+| 19 | T1 I rms vs Output Current                       
+| 20 | Efficiency vs Output Current                     
+| 21 | Pout vs Output Current                           
+| 22 | Total Power dissipation                          
+| 23 | Bottom isometric view                            
+| 24 | Bottom view                                      
+| 25 | Side left view                                   
+| 26 | Top isometric view                               
+| 27 | Top view                                         
+| 28 | Board layout                                     
+| 29 | Bottom layer                                     
+| 30 | Top layer                                        
+| 31 | Isometric View of mobile charger                 
+| 32 | Isometric view of mobile charger                 
+| 33 | Face-1 of Part-1                                 
+| 34 | Face-2 of Part-1                                 
+| 35 | Front view of Part-2                             
+| 36 | Isometric view of Part-2                         
+| 37 | Interior view of charger                         
+| 38 | Logo of the charger                              
+| 39 | Box view and its dimensions                      
+| 40 | Cap view                                         
+| 41 | Front view of Box’s cap                          
+| 42 | Side view of Box’s cap                           
+| 43 | Magnatic cable                                   
+|=======================================================
+
+[[_list_t]]
+=== 2.5. List of tables
+
+|=============================
+| 1 | Tribe Member Information
+| 2 | Text Statistics         
+| 3 | Readibility Index       
+| 4 | List of Abbreiations    
+| 5 | List of figure          
+|=============================
+
+[[_gant]]
+=== 2.6. Gantt Chart
+
+.Gantt Chart
+image:https://raw.githubusercontent.com/tarxn/ELP305_project/main/Gantt%20chart.png[]
+
+[[_abstract]]
+== 3. Abstract
+This report outlines the design of the mobile charger. The main aim is to prepare an effective charger. The process started with researching the essential requirements which include the input-output requirements, logistical requirements, environmental requirements, and structural requirements. Then the set of specifications is developed based on the requirements. The specifications are mentioned for the different parts of the charger like the adapter, master-control chip, cable, charger pins, power and safety, and finally the circuit specifications. Basic design ideas are discussed with help of some reference designs. 
+
+Using the basic circuit idea and specifications, we have designed a final design for the charger considering the power ratings, size, cost, and other factors. The design process included the closure design and PCB model making.  To check the final circuit, simulations are performed, and calculated the required circuit parameters. Then worked on getting the circuit components with low cost and good efficiency along with their 3D models and footprints. The model of our designed circuit is made.
+Finally, we have the charger which meets all the requirements and specifications at a good price. 
+
+[[_motivation]]
+== 4. Motivation
+Redesign Inspirations :
+
+We redesigned a phone charger as electrical engineers for numerous reasons. Some: 
+
+* *Efficiency*: A phone charger change was motivated by efficiency. A more efficient charger could reduce energy wastage during charging, saving consumers money on their energy bills and helping the environment. 
+
+* *Safety*: Redesigning a phone charger for safety was another reason. We aimed to reduce electrical shocks, overheating, and short circuits.
+
+* *Compatibility*: Making the charger compatible with additional devices was another motive. We wanted to build a charger that works with Android and iOS devices or many devices at once.
+
+* *Convenience*: For instance, we wanted to build a charger with a longer wire or a smaller, more compact design. 
+
+* *Sustainability*: A phone charger innovation was driven by sustainability. Use eco-friendly materials or make the charger recyclable.
+
+[[_requirements]]
+== 5. Requirements
+In the following section, we have given various requirements for a phone
+charger that we will need for our design.
+
+[[_mindmap]]
+.Requirements mindmap
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/img.jpg[]
+
+[[_input_output_requirements]]
+=== 5.1. Input Output Requirements
+* *Input*: Type C plug, 100-230V, 50-60Hz, 0.6 A.
+* *Output*: 5V, 2Amp to 10V, 6.5Amp.Using USB Power Delivery (USB PD) it is
+  a technology that allows for variable power output and flexible charging
+  of devices.
+  It also allows for reverse power flow, which means that a device can also
+  charge another device or even a battery.
+  A microcontroller can be used to control and regulate the charging
+  process, in order to implement variable power output.
+  PIC microcontrollers (ex.
+  Linear Technology’s LTC4055, Texas Instruments’ bq2429x, Maxim
+  Integrated’s MAX14526, NXP’s MC3467) are widely used in chargers due to
+  their low cost, high performance, and easy-to-use programming.
+* *Power requirement*: 10W to 100W.
+
+[[_logistical_requirements]]
+=== 5.2. Logistical Requirements
+* *Packaging*: The charger should be packaged in a way that ensures it is
+  protected from damage.
+* *Durability*: Robust design to withstand frequent use and travel.
+* *Portability*: For more portability, the LED light segment should be the
+  first choice.
+* *Labelling*: The charger should be clearly labelled with all relevant
+  information, including the output voltage and amperage, safety warnings,
+  and the name and contact information of the manufacturer.
+* *Compliance*: The charger should comply with all relevant regulations and
+  standards regarding storage, handling, and transportation.
+  It should also be BIS(Bureau of Indian Standards) approved.
+* *Laboratory and Testing*: To test the charger, we need testing equipment
+  like DSO, multi-meter, power supply, function generator, and precision
+  soldering tools.
+  The components need to be tested to prevent breakdown.
+* *Manufacturing*: The product has to be manufactured by a third
+  manufacturer, or the body gets 3D printed in Lab.
+* *Components*: We need step-down transformers, Diodes, capacitors,
+  resistors, wires, transistors, and a PIC microcontroller.
+
+[[_environmental_requirements]]
+=== 5.3. Environmental Requirements
+* *Temperature range*: -10℃ to 60℃.
+* *Humidity*: Chargers must be able to operate in a range of humidity
+  levels, typically between 20% and 90%.
+* *Water resistant*: Charger’s edges and ports need to be rubber sealed, to
+  prevent the circuit from water.
+* *Altitude*: Chargers must be able to operate at a range of altitudes,
+  typically up to 2,000 meters above sea level.
+* *Shock and vibration*: Chargers must be able to withstand a certain level
+  of shock and vibration without damage or malfunction.
+* *EMI/EMC*: Chargers must meet electromagnetic interference (EMI) and
+  electromagnetic compatibility (EMC) standards to ensure that they do not
+  interfere with other electronic devices.
+* *Safety Standards*: Chargers must meet safety standards to ensure that
+  they do not pose a risk of fire or electric shock.
+* *Energy efficiency*: Chargers must meet energy efficiency standards to
+  minimize energy consumption and reduce environmental impact.
+  Minimize No Load power consumption.
+
+[[_structural_requirements]]
+=== 5.4. Structural Requirements
+* *Dimensions:* The Dimensions of the charger should be around
+  (6cm*6cm*4cm).
+* *Plug Type:* The charger should be *2-pin plug(Type C)* (2-pin plugs are
+  widely used in India, but it is important to make sure it is BIS approved
+  for safety and compliance)
+* *Material and Design:* The *material* and design of the charger should be
+  such that it should be able to withstand a fall from a height of 2m or
+  less.
+  Some people like to keep their mobile phones on top of the charger so
+  adequate design changes should be made to the adapter.
+  Also, we now need to make sure that the heat generated in the charger
+  shouldn’t be transferred to the mobile phone, in that case, the material
+  chosen should have better insulation properties than a standard one.
+  For this polycarbonate, casing seems to be the best considering price,
+  drop strength, and weight.
+* *Adapter-cable joint:* The adapter-cable joint is made to disconnect when
+  a jerk is applied quickly but to remain firmly attached otherwise,
+  protecting the phone from damage during tripping.
+* *Length of cable:* The length of the cable should range from 3 to 4 feet.
+  The cable should be tangle free.
+* *Wire thickness:* The wire in it should be thick enough to work at 65 W
+  but not more than that.
+  It should also have the option for sending data from computer to phone and
+  vice versa(data cable).
+  It should be durable enough such that even if someone treads on it, it
+  remains safe and should also withstand a load of minimum 150N.
+  It should be a USB 3.X cable with USB C type connector.
+  To ensure we can charge a range of devices, it’s best to go with 2A ports
+  at minimum.
+* *Charger pins:* Pins should be made of a material that has low cost, good
+  electrical resistivity, and good wear resistance.
+  For this Brass seems to have a mix of all three properties and hence it
+  should be used
+* *Location of port:* It should be front rather than on the side after
+  considering spacing (both in real life and along the board), aesthetics
+* *Label Information:* Brand name and logo, Input and output voltage and
+  current specifications, Type of connector, Compatibility, Safety
+  certifications and standards (e.g., IBS), Product dimensions and weight,
+  country of origin, instructions for use and safety precautions Warranty or
+  guarantee information.
+* *Casing Opening:* The charger case will open from the rear end, keeping
+  the area near the pins fixed to ensure easy assembly.
+  moreover, the transverse cross-section of the charger will be fixed to
+  protect from dust and moisture and structural integrity
+
+[[_features]]
+=== 5.5. Features
+* *Safety Features*: Over-current, over-voltage, and short-circuit
+  protection.
+* *Efficient Charging*: Optimised for quick charging of mobile devices.
+* *Magnetic Cables*: Materials used for the connector which attaches to the
+device’s charging port are made of metals like aluminum or stainless steel,
+and the cable itself is usually made up of copper, and the cable jacket is
+made of PVC or TPE, the magnets inside the connector are made of neodymium,
+samarium cobalt and others that have high magnetic properties at
+http://www.methods.co.nz/asciidoc/[^].
+
+[[_specifications]]
+== 6. Specifications  
+In the following section, we give a brief on various specifications of the
+components that we will be using in our mobile charger.
+
+.Specifications mindmap
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/img2.jpg[]
+
+[[_adaptor_specifications]]
+=== 6.1. Adaptor Specifications
+The material we will use to 3D print the charger adaptor will be polylactic acid (PLA).
+
+* *Material of the Adaptor*: Polylactic acid (PLA), which is cane
+
+* *Operational Temperature Range*: From standard room temperature (around 25o C) to a maximum temperature of 60o C - 65o C, beyond which it will lose its mechanical properties.
+ The addition of carbon fibers increases its heat resistance increasing its upper limit of the temperature range to 100o C
+
+* *Density*: It is a lightweight material having a density of 1.24 gm/cm3
+* *Dielectric Strength*: It has a dielectric strength in the range of 10 to 20 KV/mm
+which makes it resistant to electric shocks. 
+
+* *Tensile Strength*: 50 MPa
+
+[[_Feedback_Controller_chip]]
+=== 6.2. Feedback Controller Chip
+
+[[_description]]
+==== 6.2.1. Description
+The UCC28740 isolated-flyback power-supply controller provides Constant-Voltage (CV) using an optical coupler to improve transient response to large-load steps. Constant-Current (CC) regulation is accomplished through Primary-Side Regulation (PSR) techniques. This device processes information from opto-coupled feedback and an auxiliary flyback winding for precise high-performance control of output voltage and current.
+
+Control algorithms in the UCC28740 allow operating efficiencies to meet or exceed applicable standards. The drive output interfaces to a MOSFET power switch. Discontinuous conduction mode (DCM) with valley-switching reduces switching losses. Modulation of switching frequency and primary current-peak amplitude (FM and AM) keeps the conversion efficiency high across the entire load and line ranges.
+
+[[_chip_features]]
+==== 6.2.2. Features
+
+=== Specifications:
+
+•	*Switching frequency*: 170 Hz to 100kHz
+•	*Conduction mode*: Discontinuous conduction mode (DCM)
+•	*Number of pins*: 7
+•	*Body size*: 4.90 mm x 3.91 mm
+•	*Fault pin*: Present
+•	*Startup pin voltage*: 700V
+•	*Bias-supply operating voltage*: 9-35V
+•	*Continuous gate-current sink*: 50 mA
+•	*Feedback current*: 50 µA
+•	*Peak current*: 1mA
+•	*Operating junction temperature*: -55°C to 150°C
+•	*Zero-crossing timeout delay*: 1.8-2.55 µs +
+
+=== Safety features:
+
+•	Output overvoltage
+•	Input undervoltage
+•	Thermal shutdown temperature: 165°C
+•	Primary overcurrent fault
+•	CS-pin fault and VS-pin fault
+•	UVLO reset and restart sequence
+
+
+
+
+[[_cable]]
+=== 6.3. Cable
+
+[[_cable_specifications]]
+==== 6.3.1. Cable Specifications
+
+* *Length*: 1.2 meters.
+* *Material*: Copper.
+* *Insulation*: DuPont Kevlar fibre.
+* *Connector type*: Type-C (1*USB 3.0) to Type-C (1*USB 3.0).
+* *Thickness*: 3mm to 4mm.
+
+[[_standards]]
+==== 6.3.2. Standards/ Certifications
+
+* *IS 616*: 2018 is the BIS (Bureau of Indian Standards) standard for wires
+  used in mobile charging cables.
+  The standard specifies that charger cables for mobile phones and other
+  portable electronic devices must pass mechanical, electrical, and
+  environmental tests.
+* *RoHS (Restriction of Hazardous Substances) compliance*: This
+  certification indicates that the cable does not contain harmful substances
+  such as lead, mercury, or cadmium.
+* *REACH (Registration, Evaluation, Authorisation, and Restriction of
+  Chemicals) compliance*: This certification indicates that the cable does
+  not contain any dangerous chemicals.
+* *FCC (Federal Communications Commission) Compliance*: This certification
+indicates that the cable does not interfere with other electronic devices.
+* *IS 60900:2012 (Insulated Tools for Live Working)*: This is a standard set
+  by BIS for insulated tools used for live working in India.
+  Live working refers to performing electrical work on live electrical
+  equipment or systems, such as power lines and electrical panels.
+* *IS 9999:2010 (Code of Practice for Packaging for Terminals)*: This is a
+  standard set by BIS for packaging terminals in India.
+  This standard covers the guidelines for packaging terminals, including
+  phone chargers, which are intended to protect the terminals from damage
+  during transportation and storage.
+* *IS 137000:2016 (Specification for USB Type-C Charger Adapters)*: This is
+  a standard set by BIS for USB Type-C charger adapters in India.
+  This standard covers the safety, performance, and environmental
+  requirements for USB Type-C charger adapters.
+
+[[_charger_pins]]
+=== 6.4. Charger Pins.
+
+[[_pins_specifications]]
+==== 6.4.1. Specifications
+
+* *Material*: Brass with 58% copper and 42% zinc.
+* *Separation between pins centers*: 17.5mm-18.6mm.
+* *Diameters of pin*: 5.04mm.
+* *Pin length*: 19mm.
+* *Number of Pins*: 2.
+* *Plug type*: Type C.
+* *Ampere rating*: 2.5A.
+* *Voltage*: 220V-240V.
+
+For Product link click
+https://www.indiamart.com/proddetail/mobile-charger-pins-22333824473.html?pos=2&pla=n[here]
+
+[[_circuit_specifications]]
+=== 6.5. Circuit Specifications
+
+Multilayer Ceramic Capacitors MLCC - SMD/SMT - 08053C104JAZ2A 
+[options="header"]
+|============================================================================
+           
+| Specification                                                 | Value      
+| Manufacturer:                                                 | KYOCERA AVX
+| Capacitance:                                                  | 0.1 uF     
+| Voltage Rating DC:                                            | 25 VDC     
+| Tolerance:                                                    | 5 %        
+| Minimum Operating Temperature:                                | - 55 C     
+| Maximum Operating Temperature:                                | 125 C      
+| P.U.  Price                                                   | 27.68      
+| Bulk P.U. Price(10,000)                                       | 5.5        
+|============================================================================
+
+Aluminium Electrolytic Capacitors - Radial Leaded - 400PK22MEFC12.5X20
+[options="header"]
+|=================================================================================
+        
+| Specification                                                          | Value  
+| Manufacturer:                                                          | Rubycon
+| Capacitance:                                                           | 22 uF  
+| Voltage Rating DC:                                                     | 400 VDC
+| Maximum Operating Temperature:                                         | 85 C   
+| Tolerance:                                                             | 20 %   
+| Minimum Operating Temperature:                                         | - 40 C 
+| P.U.  Price                                                            | 105.82 
+| Bulk P.U. Price(10,000)                                                | 38.99  
+|=================================================================================
+
+Diode - CD214C-F3600  
+[options="header"]
+|===========================================
+       
+                                  
+| Specification                  | Value    
+| Manufacturer                   | Bourns   
+| Type                           | Ultrafast
+| Forward Current                | 3 A      
+| Minimum Operating Temperature: | -55 C    
+| Maximum Operating Temperature  | 150 C    
+| Vr - Reverse Voltage           | 600 V    
+| P.U.  Price                    | 19.03    
+| Bulk P.U. Price(10,000)        | 6.42     
+|===========================================
+
+Diode - B540C-13-F  
+[options="header"]
+|=============================================
+         
+                                       
+| Specification                  | Value      
+| Manufacturer                   | Diodes Inc.
+| Type                           | Schottky   
+| Reverse Voltage                | 40 V       
+| Forward Current                | 5 A        
+| Minimum Operating Temperature: | -55 C      
+| Maximum Operating Temperature  | 125 C      
+| P.U.  Price                    | 43.96      
+| Bulk P.U. Price(10,000)        | 14.39      
+|=============================================
+
+Diode - DF08SA 
+[options="header"]
+|======================================================
+                   
+| Specification                  | Value               
+| Manufacturer                   | Vishay-Semiconductor
+| Type                           | Switching-Bridge    
+| Reverse Voltage                | 800 V               
+| Forward Current                | 1 A                 
+| Minimum Operating Temperature: | -55 C               
+| Maximum Operating Temperature  | 150 C               
+| P.U.  Price                    | 55.35               
+| Bulk P.U. Price(10,000)        | 23.537              
+|======================================================
+
+Diode - SMBJ110A-13-F 
+[options="header"]
+|===============================================
+         
+| Specification                    | Value      
+| Manufacturer                     | Diodes Inc.
+| Type                             | SMT        
+| Reverse Voltage                  | 110 V      
+| Current - Peak Pulse (10/1000µs) | 3.4 A      
+| Minimum Operating Temperature:   | -55 C      
+| Maximum Operating Temperature    | 150 C      
+| P.U.  Price                      | 36.47      
+| Bulk P.U. Price(10,000)          | 6.94       
+|===============================================
+
+Inductor - NPI105C471MTRF
+[options="header"]
+|============================================
+            
+| Specification              | Value         
+| Manufacturer               | NIC Components
+| Inductance                 | 470 µH           
+                  
+| Max DC Current             | 420 mA        
+| DC Resistance (DCR)        | 1.48 Ω        
+| Tolerance                  | 20 %          
+| P.U.  Price                | 11.16         
+| Bulk P.U. Price(10,000)    | 4.56          
+|============================================
+
+Mosfet - IPD80R1K0CEBTMA1  
+[options="header"]
+|==============================================================
+                     
+| Specification                         | Value                
+| Manufacturer                          | Infineon Technologies
+| Vds - Drain-Source Breakdown Voltage: | 800 V                
+| Id - Continuous Drain Current:        | 5.7 A                
+| Rds On - Drain-Source Resistance:     | 800 mohms            
+| Minimum Operating Temperature:        | -55 C                
+| Maximum Operating Temperature:        | 155 C                
+| P.U.  Price                           | 49.62                
+| Bulk P.U. Price(10,000)               | 12.55                
+|==============================================================
+
+Inrush Current Limiters - CL-40
+[options="header"]
+|=================================
+             
+| Specification                    | Value           
+| Manufacturer                     | GE Sensing      
+| Current Rating:                  | 6 A             
+| Voltage Rating:                  | 115 VAC, 230 VAC
+| Resistance:                      | 5 Ohms          
+| Tolerance:                       | 25 %            
+| Minimum Operating Temperature:   | - 50 C          
+| Maximum Operating Temperature:   | 175 C           
+| P.U.  Price                      | 160.36          
+| Bulk P.U. Price(10,000)          | 69.84           
+|=================================
+
+
+Transistor Output Optocouplers - PS2811-1
+[options="header"]
+|=============================================================================
+
+                              
+| Specification                              | Value                          
+| Manufacturer                               | California Eastern Laboratories
+| If - Forward Current:                      | 50 mA                          
+| Vf - Forward Voltage:                      | 1.4 V                          
+| Vr - Reverse Voltage:                      | 6 V                            
+| Pd - Power Dissipation:                    | 60 mW                          
+| Minimum Operating Temperature:             | - 55 C                         
+| Maximum Operating Temperature:             | 100 C                          
+| P.U.  Price                                | 246.64                         
+| Bulk P.U. Price(10,000)                    | 107.45                         
+|=============================================================================
+Thick Film Resistors - SMD - RC0603FR-0722RL
+[options="header"]
+|================================================================
+               
+| Specification                                 | Value          
+| Manufacturer                                  | Yageo          
+| Resistance:                                   | 22 Ohms        
+| Power Rating:                                 | 100 mW (1/10 W)
+| Tolerance:                                    | 1 %            
+| Minimum Operating Temperature:                | - 55 C         
+| Maximum Operating Temperature:                | 155 C          
+| Voltage Rating:                               | 75 V           
+| P.U.  Price                                   | 8.14           
+| Bulk P.U. Price(10,000)                       | 0.163          
+|================================================================
+Thick Film Resistors - SMD - RC0201FR-0718K7L
+[options="header"]
+|===============================================
+             
+| Specification                                  | Value         
+| Manufacturer:                                  | YAGEO         
+| Resistance:                                    | 18.7 kOhms    
+| Power Rating:                                  | 50 mW (1/20 W)
+| Tolerance:                                     | 1 %           
+| Temperature Coefficient:                       | 200 PPM / C   
+| Minimum Operating Temperature:                 | - 55 C        
+| Maximum Operating Temperature:                 | 125 C         
+| Voltage Rating:                                | 25 V          
+| P.U.  Price                                    | 8.14          
+| Bulk P.U. Price(10,000)                        | 0.407             
+|===============================================
+
+Resistor - RC0603FR-0739KL 
+[options="header"]
+|===============================
+                                                   
+| Specification                  | Value                     
+| Manufacturer:                  | Yageo                     
+| Product Category:              | Thick Film Resistors - SMD
+| Resistance:                    | 39 kΩ                     
+| Tolerance:                     | 1.00%                     
+| Power:                         | 100 mW                    
+| Temperature Coefficient:       | 200 PPM / C               
+| Minimum Operating Temperature: | - 55 C                    
+| Maximum Operating Temperature: | 125 C                     
+| P.U. Price:                    | ₹8.14                     
+| Bulk P.U. Price (10,000)       | ₹0.163                    
+|===============================
+
+Resistor - CRCW0402118KFKED 
+[options="header"]
+|============================================================
+                         
+| Specification                  | Value                     
+| Manufacturer:                  | Vishay-Dale               
+| Product Category:              | Thick Film Resistors - SMD
+| Resistance:                    | 118 kΩ                    
+| Tolerance:                     | 1.00%                     
+| Power:                         | 63 mW                     
+| Temperature Coefficient:       | 100 PPM / C               
+| Minimum Operating Temperature: | - 55 C                    
+| Maximum Operating Temperature: | 155 C                     
+| P.U. Price:                    | ₹8.96                     
+| Bulk P.U. Price (10,000)       | ₹0.326                    
+|============================================================
+
+Resistor - CRCW0402113KFKED 
+[options="header"]
+|===============================
+                        
+| Specification                  | Value                     
+| Manufacturer:                  | Vishay-Dale               
+| Product Category:              | Thick Film Resistors - SMD
+| Resistance:                    | 113 kΩ                    
+| Tolerance:                     | 1.00%                     
+| Power:                         | 63 mW                     
+| Temperature Coefficient:       | 100 PPM / C               
+| Minimum Operating Temperature: | - 55 C                    
+| Maximum Operating Temperature: | 155 C                     
+| P.U. Price:                    | ₹8.14                     
+| Bulk P.U. Price (10,000)       | ₹0.407                    
+|=============================== 
+
+
+Resistor - CRCW04021K07FKED 
+[options="header"]
+|============================================================
+                        
+| Specification                  | Value                     
+| Manufacturer:                  | Vishay-Dale               
+| Product Category:              | Thick Film Resistors - SMD
+| Resistance:                    | 1.07 kΩ                   
+| Tolerance:                     | 1.00%                     
+| Power:                         | 63 mW                     
+| Temperature Coefficient:       | 100 PPM / C               
+| Minimum Operating Temperature: | - 55 C                    
+| Maximum Operating Temperature: | 155 C                     
+| P.U. Price:                    | ₹8.14                     
+| Bulk P.U. Price (10,000)       | ₹0.407                    
+|============================================================
+
+Controller - UCC28740DR 
+[options="header"]
+|=======================================================
+                    
+| Specification                  | Value                
+| Manufacturer:                  | Texas Instruments    
+| Product Category:              | Switching Controllers
+| Topology:                      | Flyback              
+| Number of Outputs:             | 1 Output             
+| Switching Frequency:           | 170 Hz to 100 kHz    
+| Duty Cycle - Max:              | 99 %                 
+| Input Voltage:                 | 9 V to 35 V          
+| Output Voltage:                | 14 V                 
+| Output Current:                | 25 mA                
+| Minimum Operating Temperature: | - 40 C               
+| Maximum Operating Temperature: | 125 C                
+| P.U. Price:                    | ₹109.89              
+| Bulk P.U. Price (10,000)       | ₹53.64               
+|=======================================================
+
+[[_power_and_safety]]
+== 7. Power and Safety
+
+[[_power_specifications]]
+=== 7.1. Power Specifications
+
+* *Source*: AC adapter.
+* *Input*: 220V, 50Hz.
+* *Output*: 2.1A, 5W(Normal Charging)/20W(Fast Charging).
+* *Input Power factor*: 0.7.
+
+[[_safety_specifications]]
+=== 7.2. Safety features 
+
+* *Over voltage protection*: The Feedback Controller Chip enables ±1% Voltage Regulation and ±5% Current Regulation Across Line and Load
+* *Short Circuit Protection*: A circuit breaker is used here to break the
+  circuit from the power supply separating the load from the power supply in
+  a short time (cutoff time).
+* *Over Current Protection*: The Feedback Controller Chip  has a maximum switching frequency of 100 kHz and always maintains control of the peak-primary current in the transformer. Protection features keep primary and secondary component stresses in check. A minimum switching frequency of 170 Hz facilitates the achievement of less than 10-mW no-load power.
+
+[[_working]]
+== 8. System Design
+
+.mindmap of design
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/system%20design.jpg[]
+
+[[_circuit_design]]
+=== 8.1. Circuit Design
+
+[[_discarded_designs]]
+=== 8.1.1. Discarded Designs
+
+[[_design1]]
+=== 8.1.1.1. Design 1
+.Schematics of design 1
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/1.png[]
+
+Even Though the above charger reference circuit has specifications like variable output (5V/3A to 20V/3A) , fast charging with USB PD protocol IC, 
+The above circuit was a discarded attempt because:
+
+* Due to the fact that IIT D makerspace can only construct single-layered PCBs, the size of the PCB for the above circuit will be fairly huge.
+* The BOM(bill of materials) count for the above circuit is extremely high.
+* The costs for the individual components are extremely high resulting the manufacturing of the charger will be extremely costly.
+
+[[_design2]]
+=== 8.1.1.2. Design 2
+.Schematics of design 2
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/design2.jpg[]
+
+The output of the above circuit is 9V at 3A, and the power supply circuit uses flyback topology. It was a failed attempt because:
+
+* The PCB will be huge (total footprint area = 2534 mm^2).
+* High cost of manufacturing (cost > 1000 Rupees)
+* The output of the above circuit is 9V with a maximum output current of 3A, but only a small number of mobile phones support this charging voltage. Hence, it will harm mobile phones that do not support charging at more than 5V.
+
+[[_design3]]
+=== 8.1.1.3. Design 3
+
+.Schematics of design 3
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/design3.jpg[]
+The output for the above circuit is 12V/2A and flyback topology is followed for the power supply circuit. But the above circuit was considered a discarded attempt because:
+
+* The size of the PCB (total footprint area = 2636 mm^2) will be very large because of the same reason the above design was discarded.
+*  Expensive fabrication(cost > 1200 Rs)
+The output of the above circuit provides only a 12V output voltage with 3A max output current but only a limited number of mobile phones support charging at 12V. Hence charging mobile phones which do not support charging at more than 5V will get damaged.
+
+[[_design4]]
+=== 8.1.1.4. Design 4
+
+.Schematics of design 4
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/design4.jpg[]
+The output for the above circuit is 9V/3A and flyback topology is followed for the power supply circuit. But it was considered a discarded attempt because:
+
+* The output of the above circuit provides only a 9V output voltage with 3A max output current but only a limited number of mobile phones support charging at 9V. Hence charging mobile phones which do not support charging at more than 5V will get damaged.
+* The circuit described above lacks optocoupler feedback. By regulating oscillator circuit frequency and galvanic isolation between the High voltage Primary side and the Low voltage Secondary side, the optocoupler circuit offers regulated output voltage.
+
+[[_final_design]]
+=== 8.1.2. Final Design
+
+[[_schematic]]
+=== 8.1.2.1. Schematic
+
+.Schematics of the final design in Altium
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/final_circuit.jpg[]
+
+.Flow Chart of the working of the final circuit design
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/working_1.png[700,700]
+
+[[_working_simulation]]
+=== 8.1.2.2. Working and simulation
+
+.Partwise working of the circuit
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/working_3.png[]
+
+We accept 220V AC as input (it can vary between 85-265V) with a frequency between 50-60 Hz and outputting 5V DC.
+
+* From the flowchart, we can see that the input is rectified using a Full Wave Rectifier Bridge IC, which produces an output voltage with a variable DC voltage. The voltage signal is then sent to a Pi-Filter to allow the DC Component and block the AC Component of the Rectifier's output, where the Pi filter is constructed with two 22μF 50 mohm capacitors and a 470 μH 1.48-ohm inductor.
+
+.Double bridge rectifier output
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/double%20bridge%20rectifier%20output.jpg[]
+
+.Peak rectified Vin vs output current
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/peak%20rectified%20Vin%20vs%20ouput%20current.jpg[]
+
+.Power dissipation in bridge rectifier
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/Power%20dissipation%20in%20bridge%20rectifier.jpg[]
+
+* This constant DC voltage is sent to a PWM controller circuit, which converts DC 78.78 kHz high-frequency AC with varying duty cycles for different input voltage and output current.
+
+.Duty Cycle vs Output current
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/duty%20cycle.jpg[]
+
+.IC temp vs I out
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/ic%20temp%20vs%20output%20i.jpg[]
+
+This high-frequency AC is achieved using an external high voltage switching transistor IPD 80R1K0CE TMA1 driven by a Gate signal provided by the DRV output of the isolated-flyback power-supply controller IC UCC28740. Using an optical coupler, the controller IC provides Constant-Voltage (CV) to improve transient response to large load steps. Primary-Side Regulation (PSR) techniques control Constant-Current (CC). This device processes data from optocoupler feedback and an auxiliary flyback winding for precise, high-performance output voltage and current control.
+
+.M1 Power Dissipation
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/m1%20power%20dissipation.jpg[]
+
+.M1 temp vs I out
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/m1%20temp%20vs%20i%20out.jpg[]
+
+* After getting a high-frequency AC voltage from the PWM oscillator Circuit, this voltage is stepped down to a lower AC voltage using a transformer. The Transformer has three windings: Primary, Secondary, and Auxiliary. The Auxiliary winding is used to run the control circuit. The Secondary winding is connected to a Schottky diode B540C-13-F and a capacitor of 35V and 1.2 mF to convert AC to DC
+
+.T1 Core loss vs output current
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/T1%20core%20loss.jpg[]
+
+.T1 i rms vs output current
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/T1%20i%20rms.jpg[]
+
+* The Output of the rectified secondary voltage of the transformer is now connected to a feedback circuit containing an optocoupler PS2711-1  and a low voltage(1.24 V) adjustable precision shunt regulator IC LMV431. An Optocoupler is used for the transmission of feedback signals without contact. It has an infrared LED and a phototransistor. The feedback circuit provides the regulation of output at 5V. A Shunt voltage regulator regulates the voltage by shunting current away from the load to regulate the output voltage. Therefore, the load current becomes more prominent, maintaining the regulated voltage across the load.
+
+.Efficiency vs output current
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/pout.jpg[]
+
+.Pout vs output current
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/total%20pd.jpg[]
+
+.Total Power dissipation vs output current
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/efficiency.jpg[]
+
+[[_pcb_design]]
+=== 8.2. PCB Design
+*Description* +
+
+* We are using polygon pour on both sides LV for purpose of grounding. We have ensured that there is no island formation due to routing. All the grounds connections are properly ensured.
+
+* We are using 6 port USB C which is specially made for the purpose of power transfer. 
+
+* On the LV side, we are using 70 mil for purpose of power transfer as our current requirement is 3A. There are 2 pins each for ground and power. We are keeping their width as 35 mils. We are directly connecting the ground pins of the USB C to transformer such that, the ground polygon should be carrying this high amount of current. 
+
+* On the HV side, we are using traces of width 10mils because the current passing through the circuit is very low. 
+
+* We are having insulation between HV and LV side and their separate ground ensures insulation. 
+
+* PCB is designed is such a manner that all the component of significant height are kept on one single side and other on different side of PCB. This is done to optimise space on the PCB.
+
+*PCB shots* +
+
+* 3D PCB views 
+
+.Bottom isometric view
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/Bottom_iso_1.jpg[700,700]
+
+
+.Bottom view
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/Bottom%20view.jpg[700,700]
+
+.Side left view
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/Side_left.jpg[700,700]
+
+.Top isometric view
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/Top_iso_3.jpg[700,700]
+
+.Top view
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/Top%20view.jpg[700,700]
+
+* PCB board views
+
+.Board layout
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/Board_layout.jpg[700,700]
+
+.Bottom Layer
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/Bottom_layer_gerber.jpg[700,700]
+
+.Top Layer
+image::https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/Top_layer%20gerber%20files.jpg[700,700]
+
+[[_cad_design]]
+=== 8.3. CAD Design 
+The 3 dimentional model of charger is designed in Autodesk Inventor.
+
+[[_charger]]
+=== 8.3.1. Charger
+
+Shots of charger in Autodesk Inventor
+
+.Isometric view of mobile charger
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/view1.png[700,700]
+
+.Isometric view of mobile charger
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/veiw2.png[700,700]
+
+Dimensions of charger:
+
+.Face-1 of Part-1
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/measure1.png[700,700]
+
+.Face-2 of Part-1
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/measure2.png[700,700]
+
+.Front view of Part-2
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/measure3.png[700,700]
+
+.Isometric view of Part-2
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/view7.png[700,700]
+
+*Dimensions*
+
+*Length*: 2.23” or 5.6642 cm +
+*Min-Breadth*: 1.46” or 3.7084 cm +
+*Max-Breadth*: 2.12” or 5.3848 cm +
+*Min-Height*: 2.7599” or 7 cm +
+*Max-Height*: 3.35" or 8.5 cm +
+
+*Color:* BLACK 000000 ,Black color provides better thermal dissipation, which can help prevent heat buildup and prevent damage to the components of the circuit board. When heat is dissipated quickly and efficiently, it can help prolong the lifespan of the circuit board. +
+
+*Thermal management:*
+The design includes interior Graphite Thermal Padded walls to absorb heat produced by electric components, also the black colour of the body helps in emitting heat generated inside the charger. +
+
+*Plug Board space management:*
+The charger is made slim and the input power pins are aligned horizontally on the slimmer side as shown in above fig. 35. This design will reduce interruption to adjacent switches & plugs.
+
+.Interior view of charger
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/isometric_views_of_charger/view9.png[700,700]
+
+
+*Interior view:* The walls are covered with Graphite thermal pads, the groove is made to fit the PCB. as shown in fig.6. +
+*PCB spacing:* The 6.3cm x 5.3cm x 3cm size PCB is fitted compactly inside the charger's body. +
+*Extended plug support:* Rigid extended plug support as shown in fig. 32 . To improve support against socket and to make the power supply pins durable. +
+*Pull-off prevention:* The power supply pins are made 3 degrees tilted towards each other to have the grip inside the socket. The placement of pins are such to cancel the torque produced by the centre of mass of the charger when the charger is plugged on a vertical socket.
+
+[[_packaging]]
+=== 8.3.2. Packaging
+
+=== Branding +
+*Name of the Company* : BBChargers +
+*Name of the charger*: BIG BLACK CHARGER (BBC) +
+*Company website* : https://www.bbchargers.in
+
+
+
+=== Logo 
+
+.Logo of the charger
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/packaging/bbc_logo_black.png[500,500]
+
+* Packaging box size:
+
+The box consists of 2 parts: a case and
+ cap.
+Case dimensions: +
+*Length*: 163 mm +
+*Breadth*: 69.73 mm +
+*Height*: 44.93 mm +
+
+.Box view and its dimensions
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/packaging/box_case.jpg[]
+
+The charger and cable will be stored in this case. +
+Cap dimensions: +
+*Length*: 169 mm +
+*Breadth*: 73.73 mm +
+*Height*: 48.93 mm +
+*Thickness*: 3mm
+
+.Cap view
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/packaging/box_cap.jpg[]
+
+*Material*: 
+The inner case will be made out of Foam and this foam is supported by Hard Cardboard. The cap of this case will be made out of Hard Cardboard. +
+
+*Labeling*: 
+The labeling of the box is as shown below,
+
+.Front view of the box
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/packaging/box_front.png[200,200] 
+
+.Side view of the box
+image::https://raw.githubusercontent.com/tarxn/ELP305_project/main/CAD/packaging/box_side.png[200,200]
+
+*General Information* +
+The general info. includes information about the charger specification, servicing address & contact details, environmental impact of the charger, and how to dispose of it properly.
+
+
+
+[[_maintenance]]
+== 9. Maintenance
+
+[[_maintenance_before_after]]
+=== 9.1. Maintenance of chargers after production and before reaching to consumers
+* *Conduct quality control checks*: Before chargers leave the factory, they should undergo rigorous quality control checks to ensure that they meet industry standards and are safe for use. This includes testing the chargers for electrical safety, functionality, and durability.
+* *Package the chargers properly*: Once the chargers have been tested and approved, they should be packaged properly to protect them during transport and storage. Chargers should be packaged in a way that prevents damage from impact, moisture, or extreme temperatures.
+* *Store the chargers in a controlled environment*: Chargers should be stored in a controlled environment where the temperature and humidity are carefully monitored. This can help prevent damage to the components and ensure that the chargers remain in good working order.
+* *Use appropriate labeling and documentation*: It's important to label each charger with its specifications, model number, and any warnings or precautions that consumers should be aware of. Documentation, such as user manuals and safety instructions, should be included with each charger.
+* *Conduct periodic maintenance checks*: Regular maintenance checks can help ensure that chargers are functioning properly and are safe for use. This can include visual inspections, electrical testing, and other diagnostic procedures.
+* *Conduct performance and safety testing*: In addition to quality control checks, chargers should also undergo performance and safety testing to ensure they are safe and reliable for consumers. This can include testing for overvoltage protection, short-circuit protection, and other safety features.
+
+[[_services]]
+=== 9.2. Services
+* *Offer comprehensive product information*: Provide detailed information about the charger, including specifications, instructions for use, and safety information. This information should be readily available on your website, in user manuals, and on product packaging.
+* *Provide customer support*: Offer customer support via phone, email, or chat to help customers with any questions or issues they may have. Make sure your customer support team is well-trained and knowledgeable about the chargers you manufacture.
+* *Offer warranties and returns*: Provide warranties for your chargers, and make it easy for customers to return faulty or defective chargers. This will help build customer trust and confidence in your brand.
+* *Provide online resources*: Offer online resources such as troubleshooting guides, FAQs, and video tutorials to help customers troubleshoot issues with their chargers.
+* *Provide regular firmware updates*: If your chargers have firmware, make sure you provide regular updates to ensure they continue to function effectively and securely.
+* *Respond to customer feedback*: Listen to customer feedback and use it to improve your products and services. This can include addressing customer concerns, making product improvements, and providing better customer support.
+* *Continuously improve your products and services*: Regularly review customer feedback, and use it to improve your chargers and customer service. This will help you stay competitive and improve customer satisfaction.
+
+[[_repair_system]]
+=== 9.3. How can an efficient repair service be provided for the chargers we sell
+* *Offer a clear warranty policy*: Ensure that your charger warranty policy is clearly stated and easy to understand. This will help customers understand what is covered under the warranty, how long it lasts, and what they need to do if they need a repair.
+* *Provide clear repair instructions*: Make sure that customers understand how to request a repair, how to ship the charger to the repair facility, and what to expect during the repair process. Provide clear instructions for how to pack and ship the charger, and provide tracking information so customers can follow the repair process.
+* *Provide timely repairs*: Provide timely repairs to minimize the amount of time that customers are without their chargers. Make sure you have sufficient repair resources to ensure repairs are completed promptly.
+* *Offer a convenient repair process*: Offer a convenient repair process to make it easy for customers to get their chargers repaired. This can include offering local repair centers or drop-off locations, as well as a user-friendly online repair request process.
+* *Use high-quality replacement parts*: Use high-quality replacement parts when repairing chargers to ensure that the repair is effective and durable.
+* *Test the charger after repair*: Test the charger after repair to ensure that it is working properly before returning it to the customer. This will help ensure that the customer does not encounter the same issue after the repair.
+* *Offer a satisfaction guarantee*: Offer a satisfaction guarantee to reassure customers that they can trust your repair service. This will help build customer loyalty and trust in your brand.
+
+[[_plan_for_repairs]]
+=== 9.4. How should we plan for repairs
+* *Identify the most common issues*: Review customer feedback, warranty claims, and repair requests to identify the most common issues that customers encounter with your chargers. This will help you focus on repairing the most critical issues and help you allocate resources more efficiently.
+* *Develop a repair plan*: Based on the most common issues identified, develop a repair plan that includes repair procedures, resources required, and expected repair times. This will help you prepare for repairs and ensure that you have the necessary resources available to complete repairs in a timely manner.
+* *Establish a repair team*: Build a repair team that includes skilled technicians and support staff who can diagnose and repair issues. Ensure that the team is well-trained, and has access to the necessary tools and replacement parts to perform repairs.
+* *Build an inventory of spare parts*: Maintain an inventory of spare parts to ensure that you have the necessary replacement parts available when needed. This can help reduce repair times and improve customer satisfaction.
+* *Develop repair tracking procedures*: Develop procedures to track repairs, including repair request tracking, tracking of replacement parts, and tracking of repair progress. This will help you monitor the repair process and ensure that repairs are completed in a timely manner.
+* *Establish repair metrics*: Establish metrics to measure the effectiveness of your repair process, including repair turnaround times, repair quality, and customer satisfaction. Use these metrics to continuously improve your repair process and ensure that you are meeting customer needs.
+
+[[_plan_for_spares]]
+=== 9.5. How to plan for spares
+* *Identify the most commonly needed spare parts*: Review warranty claims, repair requests, and customer feedback to identify the most commonly needed spare parts. This will help you determine which parts to stock and how much to order.
+* *Determine the necessary inventory levels*: Based on historical data and expected demand, determine the necessary inventory levels for each spare part. This will help you ensure that you have the necessary parts available when needed, without overstocking and tying up valuable capital.
+* *Establish a supplier network*: Identify reliable suppliers for each spare part, and establish a network of suppliers to ensure that you have access to spare parts when needed. Consider supplier reliability, delivery times, and pricing when selecting suppliers.
+* *Develop a spare parts management system*: Develop a system for managing spare parts that includes inventory tracking, order tracking, and stock replenishment procedures. This will help you ensure that you have the necessary parts available when needed, and avoid stockouts.
+* *Monitor and review inventory levels*: Regularly monitor and review inventory levels to ensure that you are maintaining the necessary stock levels for each spare part. This will help you avoid stockouts, and optimize your inventory levels over time.
+* *Continuously improve your spare parts planning*: Continuously review your spare parts planning process and make improvements based on feedback from customers, suppliers, and your internal team. This will help you optimize your spare parts planning process and improve customer satisfaction.
+
+
+Through the Website, https://www.bbchargers.in
+A quick chat section on the website, where queries and problems will be resolved.
+The customer servicing address will also be given on the box.
+
+
+[[_market]]
+== 10. Marketing Strategy
+
+
+
+*Introduction*:
+
+BBChargers is a new company that specializes in manufacturing high-quality, 15-watt chargers. The company aims to provide customers with fast, reliable, and efficient charging solutions for all their devices, including smartphones, tablets, and laptops. In this marketing strategy, we will outline a step-by-step approach that BBChargers can adopt to promote and sell its products effectively.
+
+*Step 1: Define the target audience*
+
+The first step in any marketing strategy is to define the target audience. BBChargers' target audience is tech-savvy individuals who own multiple devices and are always on-the-go. They are likely to be smartphone and tablet users who rely heavily on their devices for work, communication, and entertainment. BBChargers' ideal customer is someone who values efficiency, reliability, and quality and is willing to pay for it.
+
+*Step 2: Conduct market research*
+
+To develop an effective marketing strategy, BBChargers needs to conduct market research to understand its target audience better. The research will provide insights into the needs, preferences, and behavior of customers, which can be used to create compelling marketing messages and campaigns. The research can be conducted through surveys, interviews, focus groups, and online research.
+
+*Step 3: Define the unique selling proposition (USP)*
+
+After conducting market research, BBChargers should define its unique selling proposition (USP). The USP is the unique benefit that BBChargers' products offer to customers that sets them apart from competitors. BBChargers' USP could be its 15-watt chargers' fast charging capability, which reduces the time required to charge devices significantly. The USP should be highlighted in all marketing communications to attract and retain customers.
+
+*Step 4: Develop the marketing mix*
+
+The marketing mix consists of four key elements: product, price, promotion, and place. BBChargers needs to develop a marketing mix that will appeal to its target audience.
+
+*Product*: BBChargers should focus on developing high-quality 15-watt chargers that are durable and reliable. The design of the chargers should be sleek and stylish, with an emphasis on portability.
+
+*Price*: BBChargers should price its products competitively, taking into consideration the cost of production and the prices of competitors.
+
+*Promotion*: BBChargers should develop a promotional strategy that includes advertising, sales promotions, and public relations. The advertising campaign should highlight the USP of the chargers and the benefits of using them. Sales promotions such as discounts and special offers can be used to attract new customers. Public relations can be used to generate positive media coverage for the brand.
+
+*Place*: BBChargers should make its products available in online stores and physical retail outlets, targeting locations where its target audience is likely to shop.
+
+*Step 5: Develop a content marketing strategy*
+
+Content marketing is an effective way to attract and engage customers. BBChargers should develop a content marketing strategy that includes blog posts, videos, and social media content. The content should focus on providing value to customers by addressing their pain points and offering solutions. For example, BBChargers can create videos that show how its 15-watt chargers work and how they can improve the charging experience for customers.
+
+*Step 6: Use influencer marketing*
+
+Influencer marketing can be a powerful tool to promote products and build brand awareness. BBChargers can identify influencers in the tech industry who have a large following and partner with them to promote its products. The influencers can create content such as product reviews and unboxing videos, which can reach a wider audience and generate interest in BBChargers' products.
+
+*Step 7: Monitor and evaluate the marketing strategy*
+
+Monitoring and evaluating the marketing strategy is crucial to determine
+
+[[_vendors]]
+== 11. Vendors
+
+
+* Texas Instruments
+* Octopart
+* Mouser Electronics India
+* Digikey
+* Arrow electronics
+
+[[_scope]]
+== 12. Scope
+[[_magnetic_scope]]
+=== 12.1. Scope for magnetic cable
+As we all know that, Magnetic charging cables are an incredibly useful accessory in our
+daily lives. Not only are they extremely aesthetic additions, but they’re also capable of
+adding a layer of protection for your phone and chord. Best of all, it’s perfectly safe for
+your phone to use.
+
+But in reality, we can't realize/construct magnetic cables at the level we are currently as students because these cables can be made only at the industrial level by the use of extremely highly mechanized/advanced machinery, for example, PCB fabrication can only be done at industrial level. 
+
+So, theoretically the magnetic cable we hope to make will be having some following
+features :
+
+* The charging cable should support 360° + 180° rotation that ensures the cables move along with the phone in any direction. 
+
+image:https://raw.githubusercontent.com/Dhruv-2020EE30592/ELP305/main/mscope1.jpg[400,400]
+
+
+*  Most magnetic chargers come with three types of connectors such as Type C, Micro-USB, and Lightning. The first two in the list are useful to charge Android devices while the Lightning connector is used for iPhones. 
+
+* The magnetic charger comes with a LED indicator. When the phone is charging, the LED indicator lights up. 
+
+* We should also focus on symmetry , because it will be convenient , so don’t have to worry which side is up, definitely gonna attract customers, plus it can be the “WOW factor” of our product. 
+
+[[_var_out]]
+=== 12.2. Scope for Variable Output
+For chargers with multiple outputs, we can use +
+1. *USB Power Delivery (USB PD)*: It is a technology that allows for variable power output and flexible charging of devices. It's a standard that defines how much power can be sent over a USB connection and allows for a wide range of power profiles, from 5V to 20V, and up to 100W of power.-A USB PD charger uses a technology called "negotiation" to communicate with the device being charged and determine the maximum power the device can handle safely and efficiently. This allows for variable power output, as the charger will adjust the power output to match the requirements of the device. USB PD also allows for reverse power flow, which means that a device can also charge another device or even a battery pack, this is also known as USB PD bi-directional charging. +
+2. *Microcontroller*: It can be used to control and regulate the charging process, and to implement variable power output. A microcontroller is a small computer on a single integrated circuit that can be programmed to perform a specific set of tasks. Some popular microcontrollers that are used in chargers like PIC Microcontroller (Peripheral InterfaceController): PIC microcontrollers are widely used in chargers due to their low cost, high performance, and easy-to-use programming. 
+3. *Voltage regulation*: It is one of the methods used in phone chargers to achieve variable power output. A voltage regulator circuit is used to control the output voltage of the charger. By adjusting the voltage regulator, the output voltage can be set to a specific level, allowing for variable power output. when interacting with the microcontroller 
+4. *Current Regulation*: This method uses a current regulator circuit to control the output current of the charger. By adjusting the current regulator, the output current can be set to a specific level, allowing for variable power output.
+
+
+[[_cost]]
+== 13. Cost Estimation
+
+[options="header"]
+|==========================================================================================================================================================================================================================================================================================================
+| Part                                    | Manufacturer                    | Part Number                                     | Quantity | Bulk Price(Rs) | Link                                                                                                                                           
+| Capacitor                               | AVX                             | 08053C104JAZ2A                                  | 1        | 7.34814        | https://www.mouser.in/ProductDetail/KYOCERA-AVX/08053C104JAZ2A?qs=YtXa1zY%252Bjw7108MDhSwtdw%3D%3D[product link]                               
+| Capacitor                               | Rubycon                         | 400PK22MEFC12_5X20                              | 1        | 32.28358       | https://www.mouser.in/ProductDetail/Rubycon/400PK22MEFC125X20?qs=sGAEpiMZZMvwFf0viD3Y3fHxNcSaiftw9VuvIRrFNPMu7h%252B38tv5EQ%3D%3D[product link]
+| Diode                                   | Bourns                          | CD214C-F3600                                    | 1        | 14.47          | https://www.mouser.in/ProductDetail/Bourns/CD214C-F3600?qs=TkkmMb5HBbQTesSVRPXLkQ%3D%3D[product link]                                          
+| Diode                                   | Diodes Inc.                     | B540C-13-F                                      | 1        | 17.18          | https://www.mouser.in/c/?q=B540C-13-F[product link]                                                                                            
+| Rectifier                               | Vishay-Semiconductor            | DF08SA                                          | 1        | 28.82          | https://mou.sr/3XztRA8[product link]                                                                                                           
+| Zener Diode                             | Diodes Inc.                     | SMBJ110A-13-F                                   | 1        | 8.93           | https://mou.sr/3IchOD1[product link]                                                                                                           
+| Inductor                                | NIC Components                  | NPI105C471MTRF                                  | 1        | 26.28          | https://octopart.com/npi105c471mtrf-nic+components-17393543[product link]                                                                      
+| N-channel MOSFET                        | Infineon Technologies           | IPD80R1K0CEBTMA1                                | 1        | 47.6           | https://mou.sr/3xw1tnX[product link]                                                                                                           
+| Resistor                                | GE Sensing                      | CL-40                                           | 1        | 69.84          | https://mou.sr/3IxvA4E[product link]                                                                                                           
+| Octocoupler                             | California Eastern Laboratories | PS2811-1                                        | 1        | 30.2           | https://mou.sr/3XHlGBI[product link]                                                                                                           
+| Resistor                                | Yageo                           | RC0603FR-0722RL                                 | 1        | 0.163          | https://mou.sr/4148dqE[product link]                                                                                                           
+| Resistor                                | Yageo                           | RC0201FR-0718K7L                                | 1        | 0.488          | https://mou.sr/3XGc8ab[product link]                                                                                                           
+| Resistor                                | Vishay-Dale                     | CRCW04022K21FKED                                | 1        | 0.488          | https://mou.sr/3Ivdxfw[product link]                                                                                                           
+| Resistor                                | Vishay-Dale                     | CRCW04021K00FKED                                | 1        | 0.40744        | https://mou.sr/3Z0UYp2[product link]                                                                                                           
+| Resistor                                | Vishay-Dale                     | CRCW040234K0FKED                                | 1        | 0.488          | https://mou.sr/3Z0UYp2[product link]                                                                                                           
+| Transformer                             | Core=TDK CoilFormer=TDK         | Core=B66311G0000X127 CoilFormer=B66206C1012T001 | 1        | 68.22267       | https://mou.sr/3Idh4Ol[product link]                                                                                                           
+| Voltage Regulator                       | Texas Instruments               | LMV431CM5/NOPB                                  | 1        | 28.45          | https://mou.sr/3YXsEDY[product link]                                                                                                           
+| Capacitor                               | TDK                             | CGA4J1X7R1V475K125AC                            | 1        | 8.16161        | https://mou.sr/3xwe7mR[product link]                                                                                                           
+| Capacitor                               | Rubycon                         | 400PK22MEFC12_5X20                              | 1        | 32.28358       | https://mou.sr/3KgC4WM[product link]                                                                                                           
+| Capacitor                               | Nichicon                        | UHV1V122MHD                                     | 2        | 42.08          | https://mou.sr/3EjbgBs[product link]                                                                                                           
+| Diode                                   | Microsemi                       | UFS180JE3/TR13                                  | 1        | 76.92          | https://mou.sr/3Scu6QK[product link]                                                                                                           
+| Resistor                                | Bourns                          | CRM0805-FX-R910ELF                              | 1        | 0.488          | https://mou.sr/3YGO5ZZ[product link]                                                                                                           
+| Resistor                                | Yageo                           | RC0201FR-07205KL                                | 1        | 0.4            | https://mou.sr/3xxhOc4[product link]                                                                                                           
+| Resistor                                | Yageo                           | RC0603FR-0739KL                                 | 1        | 0.25           | https://mou.sr/3Ix4YAJ[product link]                                                                                                           
+| Resistor                                | Vishay-Dale                     | CRCW0402118KFKED                                | 1        | 0.488          | https://mou.sr/3YWNao7[product link]                                                                                                           
+| Resistor                                | Vishay-Dale                     | CRCW0402113KFKED                                | 1        | 0.407          | https://mou.sr/3YWNao7[product link]                                                                                                           
+| USB Female connector                    |                                 | USB4125-GF-A-0190                               | 1        | 54             | https://www.mouser.in/ProductDetail/GCT/USB4125-GF-A-0190?qs=QNEnbhJQKvbCz4hEJBS24w%3D%3D[product link]                                        
+| Resistor                                | Vishay-Dale                     | CRCW04021K07FKED                                | 1        | 0.407          | https://mou.sr/3YWNao7[product link]                                                                                                           
+| Fly back controller                     | Texas Instruments               | UCC28740DR                                      | 1        | 31.18          | https://mou.sr/3SaAaJa[product link]                                                                                                           
+| Packaging Box(450 gsm)                  |                                 |                                                 | 1        | 20             | https://ibexpackaging.com/custom-mobile-charger-packaging-boxes/[product link]                                                                 
+| Printed Foam(inside box)                |                                 |                                                 | 1        | 12             | https://ibexpackaging.com/custom-mobile-charger-packaging-boxes/[product link]                                                                 
+| PCB Manufactering                       |                                 |                                                 | 1        | 1235.32        | https://www.pcbcart.com/quote[product link]                                                                                                    
+| Charger Hard plastic body manufacturing |                                 |                                                 | 1        | 41             | https://www.indiamart.com/proddetail/3-1-amp-mobile-charger-cabinet-21811399297.html[product link]                                             
+|==========================================================================================================================================================================================================================================================================================================
+
+
+*Total cost : 1937.04402 Rupees*
+
+[[_Attributions]]
+== 14. Attributions
+While designing this project, we used a number of softwares/extensions for
+various aspects of the project. These include +
+• *Word Counter*: For obtaining the document text statistics. +
+• *Readability Check (VS Code Extension)*: For obtaining readability
+indices scores for the document. +
+• *Markdown All in One (VS Code Extension)*: For Markdown utilities
+such as TOC generation, automatic formatting and auto-completion. +
+• *Overleaf*: For initial documentation and mind maps. +
+• *Kicad*: For making schematics and PCB design. +
+• *Altium*: Another tool used for making schematics and PCB. +
+• *LTspice*: Simulation tool used to simulate circuits. +
+• *Pspice*: Another Simulation tool used to simulate circiuts. +
+• *Autodesk Inventor*:  For designing 3D models of adaptor and packaging. +
+
+
+[[_references]]
+== 15. References
+Texas Instruments, "UCC28740DR ," Design Report UCC28740DR, August 2016
+
+California Eastern
+Laboratories, "PS2811-1", Design Report UCC28740DR , August 2016
+
+Texas Instruments, "LMV431CM5/NOPB", Design Report UCC28740DR ,August 2016
+
+Core=TDK ,CoilFormer=TDK,"Core=B66311G0000X187 ,
+CoilFormer=B66206C1014T001",Design Report UCC28740DR,  August 2016
+
+​P. Gada, "armilo," Sunday October 2020 . [Online]. Available: https://armilo.in/blogs/blog/features-to-check-when-buying-a-magnetic-charging-cable-2020-21. [Accessed Sunday January 2023]. 
+
+​"GadgetiCloud," GadgetiCloud, Monday October 2019. [Online]. Available: https://www.gadgeticloud.com/blogs/fun-facts/importance-of-magnetic-charging. [Accessed Saturday January 2023]. 
+
+​N. Wave, "EVERYDAYESNTLS," Thursday November 2020. [Online]. Available: https://everydayesntls.com/how-to-avoid-damaging-your-charging-port/. [Accessed Saturday January 2023]. 
+
+
